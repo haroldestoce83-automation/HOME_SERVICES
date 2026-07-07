@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iCleanUpYourMess — Reliable Home Cleaning Services</title>
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #ccfbf1;
+    --text: #0f172a;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; color: var(--text); background:#fff; line-height:1.5; }
+  a { text-decoration:none; color:inherit; }
+  img { max-width:100%; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(255,255,255,.95); backdrop-filter:blur(6px); z-index:50; }
+  .logo { display:flex; align-items:center; gap:8px; font-weight:800; font-size:1.15rem; }
+  .logo-badge { width:32px; height:32px; border-radius:9px; background:var(--teal); display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; }
+  nav { display:flex; gap:28px; }
+  nav a { font-size:.95rem; font-weight:500; }
+  nav a:hover { color:var(--teal); }
+  .btn { display:inline-block; padding:12px 22px; border-radius:999px; font-weight:600; font-size:.95rem; cursor:pointer; border:none; }
+  .btn-primary { background:var(--teal); color:#fff; }
+  .btn-primary:hover { background:var(--teal-dark); }
+  .btn-outline { background:#fff; border:1.5px solid var(--border); color:var(--text); }
+
+  .hero { background:linear-gradient(180deg,#ecfdf9,#ffffff); padding:70px 24px 50px; }
+  .hero-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; max-width:1100px; margin:0 auto; }
+  .badge-pill { display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid var(--teal-light); color:var(--teal-dark); padding:6px 14px; border-radius:999px; font-size:.82rem; font-weight:600; margin-bottom:18px; }
+  h1 { font-size:2.6rem; line-height:1.15; font-weight:800; margin-bottom:18px; }
+  h1 span { color:var(--teal); }
+  .hero p.lead { font-size:1.05rem; color:var(--text-secondary); margin-bottom:26px; max-width:520px; }
+  .hero-actions { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+  .rating { font-size:.9rem; color:var(--text-secondary); }
+  .hero-img { border-radius:18px; overflow:hidden; box-shadow:0 20px 40px -12px rgba(0,0,0,.18); }
+  .hero-img img { width:100%; display:block; }
+
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:44px 24px; max-width:1100px; margin:0 auto; text-align:center; border-bottom:1px solid var(--border); }
+  .stats .num { font-size:1.9rem; font-weight:800; color:var(--teal-dark); }
+  .stats .label { font-size:.78rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.03em; margin-top:4px; }
+
+  section { padding:64px 24px; }
+  .section-head { text-align:center; max-width:600px; margin:0 auto 40px; }
+  .eyebrow { color:var(--teal-dark); font-weight:700; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+  .section-head h2 { font-size:2rem; font-weight:800; margin-bottom:10px; }
+  .section-head p { color:var(--text-secondary); }
+
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1100px; margin:0 auto; }
+  .card { border:1px solid var(--border); border-radius:14px; padding:24px; background:#fff; }
+  .card .icon { width:40px; height:40px; border-radius:10px; background:var(--teal-light); display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px; }
+  .card h3 { font-size:1.05rem; margin-bottom:8px; }
+  .card p { color:var(--text-secondary); font-size:.9rem; }
+
+  .pricing-wrap { overflow-x:auto; max-width:1100px; margin:0 auto; border:1px solid var(--border); border-radius:14px; }
+  table.pricing { width:100%; border-collapse:collapse; background:#fff; }
+  table.pricing th, table.pricing td { padding:14px 16px; text-align:left; border-bottom:1px solid var(--border); font-size:.88rem; }
+  table.pricing th { background:var(--teal-light); color:var(--teal-dark); font-size:.75rem; text-transform:uppercase; letter-spacing:.03em; }
+  table.pricing td.price { font-weight:800; color:var(--teal-dark); white-space:nowrap; }
+  table.pricing tr:last-child td { border-bottom:none; }
+
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1100px; margin:0 auto; }
+  .step { text-align:center; }
+  .step .num { width:40px; height:40px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; margin:0 auto 14px; }
+  .step h3 { font-size:1rem; margin-bottom:6px; }
+  .step p { font-size:.85rem; color:var(--text-secondary); }
+
+  .testimonials { background:#f8fafc; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1100px; margin:0 auto; }
+  .testi-card { background:#fff; border:1px solid var(--border); border-radius:14px; padding:22px; }
+  .testi-card .stars { color:#f59e0b; margin-bottom:10px; font-size:.85rem; }
+  .testi-card p.quote { font-size:.92rem; margin-bottom:14px; }
+  .testi-card .who { font-size:.85rem; font-weight:700; }
+
+  #quote-form { background:linear-gradient(180deg,#0f766e,#0d9488); }
+  #quote-form .eyebrow { color:#ccfbf1; }
+  #quote-form .section-head h2, #quote-form .section-head p { color:#fff; }
+  .form-card { max-width:640px; margin:0 auto; background:#fff; border-radius:18px; padding:36px; box-shadow:0 20px 40px -12px rgba(0,0,0,.25); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .form-field { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+  .form-field.full { grid-column:1 / -1; }
+  label { font-size:.82rem; font-weight:600; }
+  input, select, textarea { border:1.5px solid var(--border); border-radius:10px; padding:11px 13px; font-size:.92rem; font-family:inherit; width:100%; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:var(--teal); }
+  textarea { resize:vertical; min-height:80px; }
+  .form-note { font-size:.78rem; color:var(--text-secondary); margin-top:14px; text-align:center; }
+
+  footer { background:#0f172a; color:#cbd5e1; padding:44px 24px 28px; }
+  .footer-grid { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; padding-bottom:24px; border-bottom:1px solid #1e293b; }
+  .footer-grid .logo { color:#fff; }
+  footer nav { gap:20px; }
+  footer nav a { color:#cbd5e1; font-size:.88rem; }
+  .footer-bottom { max-width:1100px; margin:20px auto 0; font-size:.8rem; color:#64748b; text-align:center; }
+
+  @media (max-width: 860px) {
+    nav { display:none; }
+    .hero-grid { grid-template-columns:1fr; }
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .services-grid, .steps, .testi-grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    h1 { font-size:2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><div class="logo-badge">✨</div> iCleanUpYourMess</div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#quote-form">Contact</a>
+  </nav>
+  <a href="#quote-form" class="btn btn-primary">Get a Free Quote</a>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <span class="badge-pill">🛡️ Insured &amp; background-checked cleaners</span>
+      <h1>A spotless home, <span>without lifting a finger.</span></h1>
+      <p class="lead">Reliable, thorough home cleaning for condos, townhouses, and single-detached homes. Transparent pricing, friendly staff, and a fresh home you can actually relax in.</p>
+      <div class="hero-actions">
+        <a href="#quote-form" class="btn btn-primary">Book a Cleaning</a>
+        <a href="#pricing" class="btn btn-outline">See Pricing</a>
+      </div>
+      <div class="rating">⭐⭐⭐⭐⭐ 4.9 average rating from 1,200+ cleanings</div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=900&q=80" alt="Bright clean living room">
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div><div class="num">8+</div><div class="label">Years in Business</div></div>
+  <div><div class="num">12,400+</div><div class="label">Homes Cleaned</div></div>
+  <div><div class="num">98%</div><div class="label">Satisfaction Rate</div></div>
+  <div><div class="num">100%</div><div class="label">Insured &amp; Bonded</div></div>
+</section>
+
+<section id="services">
+  <div class="section-head">
+    <div class="eyebrow">Services</div>
+    <h2>Every cleaning, done right</h2>
+    <p>A consistent, top-to-bottom clean — with optional add-ons when you need them.</p>
+  </div>
+  <div class="services-grid">
+    <div class="card"><div class="icon">🧹</div><h3>Standard Cleaning</h3><p>Dusting, vacuuming, mopping, bathrooms, kitchen, and trash removal — every visit.</p></div>
+    <div class="card"><div class="icon">🪟</div><h3>Interior Windows</h3><p>Streak-free interior glass and sills as an add-on to any package.</p></div>
+    <div class="card"><div class="icon">🔥</div><h3>Kitchen Appliance Exteriors</h3><p>Stovetop, oven exterior, fridge exterior, and countertops detailed.</p></div>
+    <div class="card"><div class="icon">📦</div><h3>Move-In / Move-Out</h3><p>Empty-property deep clean — cabinets, closets, and appliance interiors.</p></div>
+    <div class="card"><div class="icon">🛁</div><h3>Bathroom Deep Clean</h3><p>Grout, fixtures, mirrors, and tile scrubbed to a shine.</p></div>
+    <div class="card"><div class="icon">🏗️</div><h3>Post-Renovation Cleanup</h3><p>Dust and debris removal after construction or remodeling work.</p></div>
+  </div>
+</section>
+
+<section id="pricing" style="background:#f8fafc;">
+  <div class="section-head">
+    <div class="eyebrow">Pricing</div>
+    <h2>Simple, transparent pricing</h2>
+    <p>Based on property type and size. Final quote confirmed after a quick call.</p>
+  </div>
+  <div class="pricing-wrap">
+    <table class="pricing">
+      <thead>
+        <tr><th>Building Type</th><th>Typical Services Included</th><th>Price</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Studio Condo</strong><br>20–35 sqm</td><td>Dusting, vacuuming, mopping, bathroom cleaning, kitchenette cleaning, trash removal</td><td class="price">₱1,200</td></tr>
+        <tr><td><strong>1-Bedroom Condo</strong><br>35–60 sqm</td><td>General cleaning, kitchen countertops, bathroom, mirrors, floor cleaning</td><td class="price">₱1,800</td></tr>
+        <tr><td><strong>2-Bedroom Condo</strong><br>60–90 sqm</td><td>Full condo cleaning, bathrooms, kitchen, bedrooms, balcony (if any)</td><td class="price">₱2,800</td></tr>
+        <tr><td><strong>3-Bedroom Condominium</strong><br>90–130 sqm</td><td>Complete cleaning including living areas, kitchen, bathrooms, interior windows</td><td class="price">₱4,000</td></tr>
+        <tr><td><strong>Small Townhouse</strong><br>70–100 sqm</td><td>Whole-house cleaning, stairs, bathrooms, kitchen, bedrooms</td><td class="price">₱3,500</td></tr>
+        <tr><td><strong>Medium Townhouse</strong><br>100–150 sqm</td><td>Deep dusting, floor care, bathrooms, kitchen appliances exterior, stairs</td><td class="price">₱5,000</td></tr>
+        <tr><td><strong>Single Detached House</strong><br>100–180 sqm</td><td>Complete interior cleaning, multiple bathrooms, kitchen, bedrooms</td><td class="price">₱6,500</td></tr>
+        <tr><td><strong>Large Single Detached House</strong><br>180–300 sqm</td><td>Detailed house cleaning, ceiling fans, light fixtures, interior windows</td><td class="price">₱9,000</td></tr>
+        <tr><td><strong>Luxury Home / Villa</strong><br>300–500 sqm</td><td>Premium cleaning, multiple living areas, large kitchens, several bathrooms</td><td class="price">₱15,000</td></tr>
+        <tr><td><strong>Move-In / Move-Out Cleaning</strong><br>Any residential property</td><td>Empty property deep cleaning, cabinets, closets, appliances (exterior), interior windows</td><td class="price">Starts at ₱5,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="section-head">
+    <div class="eyebrow">How It Works</div>
+    <h2>Book in four easy steps</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><h3>Submit Request</h3><p>Fill out the quote form with your property details.</p></div>
+    <div class="step"><div class="num">2</div><h3>We Call to Confirm</h3><p>Our team calls to confirm scope, pricing, and timing.</p></div>
+    <div class="step"><div class="num">3</div><h3>Cleaning Scheduled</h3><p>We lock in a date and time that works for you.</p></div>
+    <div class="step"><div class="num">4</div><h3>Enjoy a Spotless Home</h3><p>Sit back while our vetted team gets to work.</p></div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-head">
+    <div class="eyebrow">Testimonials</div>
+    <h2>What our customers say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="quote">"Booked on a Tuesday, cleaned by Thursday. My 2-bedroom condo has never looked this good."</p><div class="who">— Mika R., 2-Bedroom Condo</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="quote">"Used them for our move-out clean and got our full deposit back. Worth every peso."</p><div class="who">— Jerome T., Move-Out Cleaning</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="quote">"Friendly team, fair pricing, and they actually call you back. Highly recommend."</p><div class="who">— Anna L., Townhouse</div></div>
+  </div>
+</section>
+
+<section id="quote-form">
+  <div class="section-head">
+    <div class="eyebrow">Get Started</div>
+    <h2>Request your free quote</h2>
+    <p>Tell us about your place — we'll call you shortly to confirm details and schedule.</p>
+  </div>
+  <div class="form-card">
+    <!-- See setup notes near the end of this file for wiring this form to Zoho CRM or Airtable -->
+    <form id="leadForm" action="#REPLACE_WITH_YOUR_FORM_ACTION_URL" method="POST">
+      <div class="form-row">
+        <div class="form-field"><label>First Name</label><input type="text" name="First Name" required></div>
+        <div class="form-field"><label>Last Name</label><input type="text" name="Last Name" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Email</label><input type="email" name="Email" required></div>
+        <div class="form-field"><label>Phone Number</label><input type="tel" name="Phone" required></div>
+      </div>
+      <div class="form-field full">
+        <label>Property Type</label>
+        <select name="LEADCF1">
+          <option>Studio Condo</option>
+          <option>1-Bedroom Condo</option>
+          <option>2-Bedroom Condo</option>
+          <option>3-Bedroom Condominium</option>
+          <option>Small Townhouse</option>
+          <option>Medium Townhouse</option>
+          <option>Single Detached House</option>
+          <option>Large Single Detached House</option>
+          <option>Luxury Home / Villa</option>
+          <option>Move-In / Move-Out Cleaning</option>
+        </select>
+      </div>
+      <div class="form-field full"><label>Address / Area</label><input type="text" name="Street" placeholder="e.g. Makati City"></div>
+      <div class="form-row">
+        <div class="form-field"><label>Preferred Date (optional)</label><input type="date" name="LEADCF2"></div>
+        <div class="form-field"></div>
+      </div>
+      <div class="form-field full"><label>Notes</label><textarea name="Description" placeholder="Anything else we should know?"></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Request My Free Quote</button>
+      <p class="form-note">By submitting, you agree to be contacted by phone or email to schedule your cleaning.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="logo">✨ iCleanUpYourMess</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#quote-form">Contact</a>
+    </nav>
+    <div style="font-size:.85rem;">📞 (02) 8123-4567<br>✉️ hello@icleanupyourmess.com</div>
+  </div>
+  <div class="footer-bottom">© 2026 iCleanUpYourMess. All rights reserved.</div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var id = link.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+
+<!--
+=====================================================================
+SETUP NOTES — read this before the form goes live. It currently points
+at a placeholder action and will not submit anywhere until you finish
+ONE of the two options below.
+
+OPTION A — Zoho CRM Web-to-Lead (matches the free CRM plan discussed
+earlier; no API key ever touches this file, safe to publish as-is):
+  1. In Zoho CRM: Setup -> Developer Space -> Web Forms -> Create Web Form.
+  2. Map the standard fields: First Name, Last Name, Email, Phone, Street,
+     Description.
+  3. For "Property Type" and "Preferred Date," first create two Custom
+     Fields on the Leads module (Setup -> Modules -> Leads -> Fields),
+     then map them in the web form builder — Zoho will tell you the exact
+     field names to use (they usually look like LEADCF1, LEADCF2, etc.,
+     already used as placeholders above).
+  4. Zoho generates a ready-made <form> snippet with its own action URL
+     and a couple of hidden inputs (xnQsjsdp, zc_gad). Replace this file's
+     <form id="leadForm" action="..."> line with Zoho's action URL, and
+     paste its hidden <input> tags right after the <form> tag.
+  5. Done — submissions create Leads in Zoho CRM directly. No backend,
+     no cost, no exposed credentials.
+
+OPTION B — Airtable Form view (simplest, also zero exposed credentials):
+  1. In your Airtable base's Leads table, open the "Form" view.
+  2. Add the same fields shown in this form.
+  3. Click "Share form" -> "Embed" and copy the <iframe> snippet Airtable
+     gives you.
+  4. Delete the whole <form id="leadForm">...</form> block above and
+     paste that <iframe> in its place. Airtable hosts and stores every
+     submission itself.
+
+Do NOT wire this page directly to Airtable's REST API with a personal
+access token pasted into this file — anyone who views the page source
+could copy that token and get full read/write access to your base.
+The Airtable Form iframe (Option B) avoids that entirely.
+=====================================================================
+-->
+</body>
+</html>
