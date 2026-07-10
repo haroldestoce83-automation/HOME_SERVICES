@@ -265,6 +265,18 @@ document.querySelectorAll('a[href^="#"]').forEach(function(link){
 function openQuoteModal(){
   document.getElementById('quoteModalOverlay').classList.add('open');
   document.body.classList.add('modal-open');
+  // The GHL booking widget's form_embed.js measures/reveals the iframe on
+  // its 'load' event. Since the modal starts as display:none, that first
+  // load happens while hidden and the script gets stuck (iframe stays
+  // opacity:0, height:5px, positioned off-screen). Forcing a fresh reload
+  // now, while the modal is actually visible, makes the measurement work.
+  var qframe = document.getElementById('AKfcx9YA7yo1Yhh8Cazj_1783663499709');
+  if (qframe && !qframe.dataset.reloaded) {
+    var src = qframe.src;
+    qframe.src = 'about:blank';
+    qframe.src = src;
+    qframe.dataset.reloaded = 'true';
+  }
 }
 function closeQuoteModal(){
   document.getElementById('quoteModalOverlay').classList.remove('open');
